@@ -1,0 +1,15 @@
+using Documenter
+using FunOMOP
+
+makedocs(
+    sitename = "FunOMOP",
+    format = Documenter.HTML(),
+    modules = [FunOMOP]
+)
+
+# Documenter can also automatically deploy documentation to gh-pages.
+# See "Hosting Documentation" and deploydocs() in the Documenter manual
+# for more information.
+#=deploydocs(
+    repo = "<repository url>"
+)=#
