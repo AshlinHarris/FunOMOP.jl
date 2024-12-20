@@ -4,7 +4,8 @@ using FunOMOP
 makedocs(
     sitename = "FunOMOP",
     format = Documenter.HTML(),
-    modules = [FunOMOP]
+    modules = [FunOMOP],
+    #doctest = :fix,
 )
 
 # Documenter can also automatically deploy documentation to gh-pages.

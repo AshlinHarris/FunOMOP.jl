@@ -2,6 +2,8 @@ module FunOMOP
 
 export person
 export main
+export DATABASE
+export conn
 
 using Artifacts
 using CSV
@@ -11,6 +13,9 @@ using FunSQL
 using HTTP
 
 export func
+
+DATABASE = joinpath(artifact"synthea_omop_test", "synthea_omop_test.db",)
+conn = DBInterface.connect(FunSQL.DB{DuckDB.DB}, DATABASE)
 
 """
     func(x)
@@ -43,12 +48,12 @@ function person()
         person_id => omop.person_id,
         gender_concept_id => omop.gender_concept_id,
         birth_datetime => coalesce(omop.birth_datetime,
-                              timestamp(
+                              #=timestamp(
                                   make_date(omop.year_of_birth,
                                   coalesce(omop.month_of_birth, 1),
-                                  coalesce(omop.day_of_birth, 1)))),
+                                  coalesce(omop.day_of_birth, 1)))=#),
         death_datetime => coalesce(omop.death.death_datetime,
-                              timestamp(omop.death.death_date)),
+                              #=timestamp(omop.death.death_date)=#),
         death_concept_id =>
             case(is_not_null(omop.death.person_id),
                  coalesce(omop.death.cause_concept_id, 0)),
@@ -58,6 +63,7 @@ function person()
         location_id => omop.location_id,
         provider_id => omop.provider_id,
         care_site_id => omop.care_site_id)
+    #=
     join(
         gender_concept => concept(),
         gender_concept_id == gender_concept.concept_id,
@@ -86,6 +92,7 @@ function person()
         care_site => care_site(),
         care_site_id == care_site.care_site_id,
         optional = true)
+    =#
 end
 end
 
