@@ -9,6 +9,7 @@ Artifacts = "56f22d72-fd6d-98f1-02f0-08ddc0907c33"
 CSV = "336ed68f-0bac-5ca0-87d4-7b16caf5d00b"
 DataFrames = "a93c6f00-e57d-5684-b7b6-d8193f3e46c0"
 DuckDB = "d2f5444f-75bc-4fdf-ac35-56f514c445e1"
+FunSQL = "cf6cc811-59f4-4a10-b258-a8547a8f6407"
 HTTP = "cd3eb016-35fb-5094-929b-558a96fad6f3"
 
 [compat]
@@ -17,4 +18,5 @@ Artifacts = "1.11.0"
 CSV = "0.10.15"
 DataFrames = "1.7.0"
 DuckDB = "1.1.0"
+FunSQL = "0.14.3"
 HTTP = "1.10.15"
