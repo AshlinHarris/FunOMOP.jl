@@ -1,4 +1,4 @@
-#module FunOMOP
+module FunOMOP
 
 using Artifacts
 using CSV
@@ -6,13 +6,14 @@ using DataFrames
 using DuckDB
 using FunSQL
 using HTTP
+using TRDW
 
 #function remote_test_csv(omop_table_name)
 	#url = "https://raw.githubusercontent.com/AshlinHarris/OmopTestData/refs/heads/main/assets/omop-mimic-iv/1_omop_data_csv/$(omop_table_name).csv"
 	#return HTTP.get(url).body |> CSV.File
 #end
 
-
+function main()
 DATABASE = joinpath(artifact"synthea_omop_test", "synthea_omop_test.db",)
 conn = DBInterface.connect(FunSQL.DB{DuckDB.DB}, DATABASE)
 
@@ -33,5 +34,6 @@ conn = DBInterface.connect(FunSQL.DB{DuckDB.DB}, DATABASE)
 end
 
 DBInterface.execute(conn, query)
+end
 
-#end # module FunOMOP
+end # module FunOMOP
