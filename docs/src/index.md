@@ -12,20 +12,19 @@ main()
 person()
 ```
 
+```@docs
+execute_query(q)
+```
+
 ```@meta
 DocTestSetup = quote
-	using Artifacts
 	using DataFrames
-	using DuckDB
 	using FunOMOP
-	using FunSQL
-	DATABASE = joinpath(artifact"synthea_omop_test", "synthea_omop_test.db",)
-	conn = DBInterface.connect(FunSQL.DB{DuckDB.DB}, DATABASE)
 end
 ```
 
 ```jldoctest
-julia> DBInterface.execute(conn, person()) |> DataFrame
+julia> execute_query(person())
 28×11 DataFrame
  Row │ person_id  gender_concept_id  birth_datetime       death_datetime       ⋯
      │ Int64      Int64              Dates.DateTime       Dates.DateTime?      ⋯

@@ -2,8 +2,7 @@ module FunOMOP
 
 export person
 export main
-export DATABASE
-export conn
+export execute_query
 
 using Artifacts
 using CSV
@@ -14,8 +13,16 @@ using HTTP
 
 export func
 
-DATABASE = joinpath(artifact"synthea_omop_test", "synthea_omop_test.db",)
-conn = DBInterface.connect(FunSQL.DB{DuckDB.DB}, DATABASE)
+
+"""
+	execute_query(q)
+Run the FunSQL query against a sample data set
+"""
+function execute_query(q)
+	DATABASE = joinpath(artifact"synthea_omop_test", "synthea_omop_test.db",)
+	conn = DBInterface.connect(FunSQL.DB{DuckDB.DB}, DATABASE)
+	DBInterface.execute(conn, q) |> DataFrame
+end
 
 """
     func(x)
