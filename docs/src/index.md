@@ -1,3 +1,13 @@
 # FunOMOP.jl
 
-Documentation for FunOMOP.jl
+```@docs
+func(x)
+```
+
+```@docs
+main()
+```
+
+```@docs
+person()
+```
