@@ -1,31 +1,16 @@
 # FunOMOP.jl
 
-```@docs
-func(x)
-```
-
-```@docs
-main()
-```
-
-```@docs
-funsql_person()
-```
-
-```@docs
-funsql_concept()
-```
-
-```@docs
-execute_query(q)
-```
-
 ```@meta
 DocTestSetup = quote
 	using DataFrames
 	using FunOMOP
 	using FunSQL
 end
+```
+
+```@autodocs
+Modules = [FunOMOP,]
+Order   = [:function, :type]
 ```
 
 ```jldoctest
