@@ -1,6 +1,7 @@
 module FunOMOP
 
-export person
+export funsql_person
+export funsql_concept
 export main
 export execute_query
 
@@ -40,10 +41,9 @@ func(x) = 2x + 1
 #
 
 """
-    person()
-hello
+    funsql_person()
 """
-function person()
+function funsql_person()
 	@funsql begin
     from(person)
     left_join(
@@ -70,7 +70,6 @@ function person()
         location_id => omop.location_id,
         provider_id => omop.provider_id,
         care_site_id => omop.care_site_id)
-    #=
     join(
         gender_concept => concept(),
         gender_concept_id == gender_concept.concept_id,
@@ -87,6 +86,7 @@ function person()
         ethnicity_concept => concept(),
         ethnicity_concept_id == ethnicity_concept.concept_id,
         optional = true)
+    #=
     left_join(
         location => location(),
         location_id == location.location_id,
@@ -104,8 +104,26 @@ end
 end
 
 """
+    funsql_concept()
+"""
+function funsql_concept()
+	@funsql begin
+    from(concept)
+    as(omop)
+    define(
+        omop.concept_id,
+        omop.concept_name,
+        omop.domain_id,
+        omop.vocabulary_id,
+        omop.concept_class_id,
+        omop.standard_concept,
+        omop.concept_code,
+        omop.invalid_reason)
+end
+end
+
+"""
     main()
-hello
 """
 function main()
 DATABASE = joinpath(artifact"synthea_omop_test", "synthea_omop_test.db",)

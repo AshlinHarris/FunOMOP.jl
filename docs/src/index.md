@@ -9,7 +9,11 @@ main()
 ```
 
 ```@docs
-person()
+funsql_person()
+```
+
+```@docs
+funsql_concept()
 ```
 
 ```@docs
@@ -20,11 +24,12 @@ execute_query(q)
 DocTestSetup = quote
 	using DataFrames
 	using FunOMOP
+	using FunSQL
 end
 ```
 
 ```jldoctest
-julia> execute_query(person())
+julia> execute_query(@funsql person())
 28×11 DataFrame
  Row │ person_id  gender_concept_id  birth_datetime       death_datetime       ⋯
      │ Int64      Int64              Dates.DateTime       Dates.DateTime?      ⋯
