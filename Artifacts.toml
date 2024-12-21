@@ -1,6 +1,13 @@
+[omop_ddl]
+git-tree-sha1 = "c7bc50919faccfabf55886a5fe7a6519e27d32e2"
+
+    [[omop_ddl.download]]
+    sha256 = "bbd2e046c61016c986ab95e08f07b1f8630a2ab0deba0c1c65b42f3efb01c22d"
+    url = "https://github.com/AshlinHarris/OmopTestData/raw/refs/heads/main/assets/ddl/OMOPCDM_duckdb_5.4_ddl.sql.tar.gz"
+
 [synthea_omop_test]
-git-tree-sha1 = "f40d3d18253caa4d94b7484a2aa3a671b82651f9"
+git-tree-sha1 = "736345bd94b8ad032597ab6d67097926f6f2cfae"
 
     [[synthea_omop_test.download]]
-    sha256 = "1e45ab0f8d79dd0b7ea6f5a9950a20646ba59e7c94446315d36f2b8ad0b5d72d"
-    url = "https://github.com/AshlinHarris/OmopTestData/raw/refs/heads/main/out/synthea_omop_test.db.tar.gz"
+    sha256 = "fd233f4b27409354efd2fd23c81aff73fc0f96bba4b4797a03408da95efc2430"
+    url = "https://github.com/AshlinHarris/OmopTestData/raw/refs/heads/main/assets/data/Synthea27Nj_5.4.tar.gz"
