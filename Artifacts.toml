@@ -1,6 +1,6 @@
 [synthea_omop_test]
-git-tree-sha1 = "1773bccf68ed219da5b675c967bfc1f907a06246"
+git-tree-sha1 = "f40d3d18253caa4d94b7484a2aa3a671b82651f9"
 
     [[synthea_omop_test.download]]
-    sha256 = "64841d0fdbd4795091153c484227fe0946506aa4ab61f024860dde58ef00aa37"
+    sha256 = "1e45ab0f8d79dd0b7ea6f5a9950a20646ba59e7c94446315d36f2b8ad0b5d72d"
     url = "https://github.com/AshlinHarris/OmopTestData/raw/refs/heads/main/out/synthea_omop_test.db.tar.gz"
