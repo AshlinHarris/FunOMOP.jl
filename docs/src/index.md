@@ -26,7 +26,7 @@ julia> DBInterface.execute(con, "SELECT * FROM person LIMIT 1;") |> DataFrame
 ```
 
 ```jldoctest
-julia> DBInterface.execute(con, @funsql person()) |> DataFrame
+julia> DBInterface.execute(con, @funsql(person().limit(1))) |> DataFrame
 1×18 DataFrame
  Row │ person_id  gender_concept_id  year_of_birth  month_of_birth  day_of_bir ⋯
      │ Int64      Int64              Int64          Int64           Int64      ⋯

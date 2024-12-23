@@ -6,6 +6,7 @@ makedocs(
     format = Documenter.HTML(),
     modules = [FunOMOP],
     #doctest = :fix,
+    #warnonly = true,
 )
 
 # Documenter can also automatically deploy documentation to gh-pages.

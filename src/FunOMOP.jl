@@ -25,7 +25,9 @@ Build a test database in memory and return the connection
 """
 function get_test_db_connection()
 
-    con = DBInterface.connect(FunSQL.DB{DuckDB.DB}, ":memory:")
+    DATABASE = ":memory:"
+    #con = DBInterface.connect(FunSQL.DB{DuckDB.DB}, DATABASE; schema = "main", dialect = :duckdb)
+    con = DBInterface.connect(DuckDB.DB, DATABASE)
 
     #TODO: maybe name the schema?
     # Parse the ddl into individual commands
@@ -46,7 +48,11 @@ function get_test_db_connection()
         DBInterface.execute(con, "COPY $table_name FROM '$file_name';")
     end
 
-    return con
+    catalog = FunSQL.reflect(con, dialect=:duckdb)
+
+    new_con = FunSQL.DB(con, catalog = catalog)
+
+    return new_con
 
 end
 
