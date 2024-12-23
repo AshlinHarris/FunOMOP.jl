@@ -1,6 +1,6 @@
 module FunOMOP
 
-export get_test_db_connection
+export get_test_db
 export funsql_person
 export funsql_care_site
 export funsql_location
@@ -20,16 +20,15 @@ include("person.jl")
 include("provider.jl")
 
 """
-    get_test_db_connection()
+    get_test_db()
 Build a test database in memory and return the connection
 """
-function get_test_db_connection()
+function get_test_db()
 
+    # New database in memory
     DATABASE = ":memory:"
-    #con = DBInterface.connect(FunSQL.DB{DuckDB.DB}, DATABASE; schema = "main", dialect = :duckdb)
-    con = DBInterface.connect(DuckDB.DB, DATABASE)
+    conn = DBInterface.connect(DuckDB.DB, DATABASE)
 
-    #TODO: maybe name the schema?
     # Parse the ddl into individual commands
     pattern = r"CREATE TABLE @cdmDatabaseSchema.([\w_]*) \(([\s\S]*?)[\n\)];"
     input_file_contents = read(joinpath(artifact"omop_ddl", "OMOPCDM_duckdb_5.4_ddl.sql"), String)
@@ -40,19 +39,19 @@ function get_test_db_connection()
             "@cdmDatabaseSchema." => "",
             "integer" => "BIGINT",
             )
-        DBInterface.execute(con, command)
+        DBInterface.execute(conn, command)
 
         # Write the data
         table_name = match.captures |> first |> String |> uppercase
         file_name = joinpath(artifact"synthea_omop_test", "Synthea27Nj_5.4", "$table_name.csv")
-        DBInterface.execute(con, "COPY $table_name FROM '$file_name';")
+        DBInterface.execute(conn, "COPY $table_name FROM '$file_name';")
     end
 
-    catalog = FunSQL.reflect(con, dialect=:duckdb)
+    # Update the catalog for any new tables
+    catalog = FunSQL.reflect(conn, dialect=:duckdb)
+    updated_conn = FunSQL.DB(conn, catalog = catalog)
 
-    new_con = FunSQL.DB(con, catalog = catalog)
-
-    return new_con
+    return updated_conn
 
 end
 
