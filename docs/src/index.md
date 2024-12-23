@@ -6,7 +6,7 @@ DocTestSetup = quote
     using DuckDB
     using FunOMOP
     using FunSQL
-    con = get_test_db()
+    conn = get_test_db()
 end
 ```
 
@@ -16,7 +16,7 @@ Order   = [:function, :type]
 ```
 
 ```jldoctest
-julia> DBInterface.execute(con, @funsql(person().limit(1))) |> DataFrame
+julia> DBInterface.execute(conn, @funsql(person().limit(1))) |> DataFrame
 1×18 DataFrame
  Row │ person_id  gender_concept_id  year_of_birth  month_of_birth  day_of_bir ⋯
      │ Int64      Int64              Int64          Int64           Int64      ⋯
