@@ -1,8 +1,8 @@
-"""
-    funsql_provider()
-"""
-function funsql_provider()
-    @funsql begin
+@funsql begin
+    """
+        funsql_provider()
+    """
+    provider() = begin
         from(provider)
         #TODO: local logic
         #define(is_preepic => provider_id > 1000000000)

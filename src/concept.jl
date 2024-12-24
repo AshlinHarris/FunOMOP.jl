@@ -1,8 +1,8 @@
-"""
-    funsql_concept()
-"""
-function funsql_concept()
-    @funsql begin
+@funsql begin
+    """
+        funsql_concept()
+    """
+    concept() = begin
         from(concept)
         as(omop)
         define(

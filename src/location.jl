@@ -1,8 +1,8 @@
-"""
-    funsql_location()
-"""
-function funsql_location()
-    @funsql begin
+@funsql begin
+    """
+        funsql_location()
+    """
+    location() = begin
         from(location)
         as(omop)
         define(

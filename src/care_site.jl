@@ -1,8 +1,8 @@
-"""
-    funsql_care_site()
-"""
-function funsql_care_site()
-    @funsql begin
+@funsql begin
+    """
+        funsql_care_site()
+    """
+    care_site() = begin
         from(care_site)
         #TODO: Tufts-specific logic
         define(is_preepic => care_site_id > 1000000000)

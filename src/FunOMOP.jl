@@ -38,7 +38,7 @@ function get_test_db()
         command = replace(match.match,
             "@cdmDatabaseSchema." => "",
             "integer" => "BIGINT",
-            )
+        )
         DBInterface.execute(conn, command)
 
         # Write the data
