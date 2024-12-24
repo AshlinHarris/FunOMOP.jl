@@ -1,10 +1,9 @@
-"""
-    funsql_person()
-"""
-function funsql_person()
-    @funsql begin
+@funsql begin
+    """
+        funsql_person()
+    """
+    person() = begin
         from(person)
-	#=
         left_join(
             death => from(death),
             person_id == death.person_id,
@@ -58,7 +57,6 @@ function funsql_person()
             care_site => care_site(),
             care_site_id == care_site.care_site_id,
             optional = true)
-	    =#
     end
 end
 
