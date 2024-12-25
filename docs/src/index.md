@@ -1,6 +1,12 @@
 # FunOMOP.jl
 
-[example](src/example.md)
+[Example](@ref)
+
+```@contents
+```
+
+```@index
+```
 
 
 ```@meta
