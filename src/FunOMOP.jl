@@ -15,9 +15,15 @@ using FunSQL
 
 include("concept.jl")
 include("care_site.jl")
+include("device.jl")
 include("location.jl")
+include("note.jl")
+include("observation.jl")
 include("person.jl")
 include("provider.jl")
+include("specimen.jl")
+include("visit.jl")
+include("visit_detail.jl")
 
 """
     get_test_db()
