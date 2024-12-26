@@ -1,11 +1,19 @@
 module FunOMOP
 
 export get_test_db
-export funsql_person
-export funsql_care_site
-export funsql_location
-export funsql_provider
+
 export funsql_concept
+export funsql_care_site
+export funsql_device
+export funsql_location
+export funsql_note
+export funsql_observation
+export funsql_person
+export funsql_provider
+export funsql_specimen
+export funsql_visit
+export funsql_visit_detail
+
 
 using Artifacts
 using CSV
