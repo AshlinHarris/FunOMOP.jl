@@ -15,5 +15,10 @@
             omop.concept_code,
             omop.invalid_reason)
     end
+
+    concept(concept_id::Integer...) =
+        concept().filter(in(concept_id, $concept_id...))
+
+    concept(p) = concept().filter($p)
 end
 
