@@ -10,10 +10,15 @@ visit() = begin
         occurrence_id => omop.visit_occurrence_id,
         person_id => omop.person_id,
         concept_id => omop.visit_concept_id,
+        datetime => omop.visit_start_datetime,
+        datetime_end => omop.visit_end_datetime,
+        #TODO:
+        #=
         datetime => coalesce(omop.visit_start_datetime,
-                             timestamp(omop.visit_start_date)),
+            timestamp(omop.visit_start_date)),
         datetime_end => coalesce(omop.visit_end_datetime,
-                                 timestamp(omop.visit_end_date)),
+            timestamp(omop.visit_end_date)),
+            =#
         type_concept_id => omop.visit_type_concept_id,
         provider_id => omop.provider_id,
         # domain specific columns

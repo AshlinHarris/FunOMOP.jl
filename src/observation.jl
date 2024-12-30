@@ -10,8 +10,12 @@ observation() = begin
         occurrence_id => omop.observation_id,
         person_id => omop.person_id,
         concept_id => omop.observation_concept_id,
+        datetime => omop.observation_datetime,
+        #TODO:
+        #=
         datetime => coalesce(omop.observation_datetime,
-                             timestamp(omop.observation_date)),
+            timestamp(omop.observation_date)),
+            =#
         datetime_end => missing,
         type_concept_id => omop.observation_type_concept_id,
         provider_id => omop.provider_id,

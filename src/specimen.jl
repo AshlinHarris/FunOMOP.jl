@@ -10,8 +10,12 @@ specimen() = begin
         occurrence_id => omop.specimen_id,
         person_id => omop.person_id,
         concept_id => omop.specimen_concept_id,
+        datetime => omop.specimen_datetime,
+        #TODO:
+        #=
         datetime => coalesce(omop.specimen_datetime,
-                             timestamp(omop.specimen_date)),
+            timestamp(omop.specimen_date)),
+            =#
         datetime_end => missing,
         type_concept_id => omop.specimen_type_concept_id,
         visit_occurrence_id => missing,
