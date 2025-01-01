@@ -10,15 +10,12 @@ visit_detail() = begin
         occurrence_id => omop.visit_detail_id,
         person_id => omop.person_id,
         concept_id => omop.visit_detail_concept_id,
-        datetime => omop.visit_detail_start_datetime,
-        datetime_end => omop.visit_detail_end_datetime,
-        #TODO:
-        #=
-        datetime => coalesce(omop.visit_detail_start_datetime,
-            timestamp(omop.visit_detail_start_date)),
-        datetime_end => coalesce(omop.visit_detail_end_datetime,
-            timestamp(omop.visit_detail_end_date)),
-            =#
+        datetime => coalesce(
+            omop.visit_detail_start_datetime,
+            omop.visit_detail_start_date),
+        datetime_end => coalesce(
+            omop.visit_detail_end_datetime,
+            omop.visit_detail_end_date),
         type_concept_id => omop.visit_detail_type_concept_id,
         provider_id => omop.provider_id,
         visit_occurrence_id => omop.visit_occurrence_id,

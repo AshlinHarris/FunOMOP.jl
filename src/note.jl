@@ -10,12 +10,9 @@ note() = begin
         occurrence_id => omop.note_id,
         person_id => omop.person_id,
         concept_id => omop.note_class_concept_id,
-        datetime => omop.note_datetime,
-        #TODO:
-        #=
-        datetime => coalesce(omop.note_datetime,
-            timestamp(omop.note_date)),
-            =#
+        datetime => coalesce(
+            omop.note_datetime,
+            omop.note_date),
         datetime_end => missing,
         type_concept_id => omop.note_type_concept_id,
         provider_id => omop.provider_id,
