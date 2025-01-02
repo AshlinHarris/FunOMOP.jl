@@ -1,10 +1,12 @@
-FunOMOP_SQL_dialect = get(ENV, "FunOMOP_SQL_dialect", :duckdb)
+FunOMOP_SQL_dialect = get(ENV, "FunOMOP_SQL_dialect", "duckdb")
 
+    #=
 #TODO: automatically read this from the database or the FunSQL command?
 if !@isdefined(FunOMOP_SQL_dialect)
     @warn("`FunOMOP_SQL_dialect` is not set. Options are :spark or :duckdb (default)")
     const global FunOMOP_SQL_dialect = :duckdb
 end
+=#
 
 macro export_funsql_fun_or_agg(exs...)
     block = Expr(:block)
@@ -30,7 +32,7 @@ macro export_funsql_fun_or_agg(exs...)
 end
 
 @warn(":FunOMOP_SQL_dialect", FunOMOP_SQL_dialect)
-if FunOMOP_SQL_dialect == :duckdb
+if FunOMOP_SQL_dialect == "duckdb"
 
     #TODO: why doesn't this work inside an if block?
     #using FunSQL: @dissect
@@ -85,7 +87,7 @@ if FunOMOP_SQL_dialect == :duckdb
             "%Y-%m-%d")
     end
 
-elseif FunOMOP_SQL_dialect == :spark
+elseif FunOMOP_SQL_dialect == "spark"
 
     @funsql begin
         datetime_from_date_ints(year, month, day) =
