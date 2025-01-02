@@ -36,10 +36,10 @@ include("specimen.jl")
 include("visit.jl")
 include("visit_detail.jl")
 
-@warn(FunOMOP_SQL_dialect)
-@warn(FunOMOP_SQL_dialect == :duckdb)
-
 if FunOMOP_SQL_dialect == :duckdb
+
+    #TODO: why doesn't this work inside an if block?
+    #using FunSQL: @dissect
 
     macro export_funsql_fun_or_agg(exs...)
         block = Expr(:block)
