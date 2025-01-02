@@ -12,7 +12,7 @@ specimen() = begin
         concept_id => omop.specimen_concept_id,
         datetime => coalesce(
             omop.specimen_datetime,
-            omop.specimen_date),
+            date_to_datetime(omop.specimen_date)),
         datetime_end => missing,
         type_concept_id => omop.specimen_type_concept_id,
         visit_occurrence_id => missing,

@@ -11,9 +11,9 @@ visit() = begin
         person_id => omop.person_id,
         concept_id => omop.visit_concept_id,
         datetime => coalesce(omop.visit_start_datetime,
-            omop.visit_start_date),
+            date_to_datetime(omop.visit_start_date)),
         datetime_end => coalesce(omop.visit_end_datetime,
-            omop.visit_end_date),
+            date_to_datetime(omop.visit_end_date)),
         type_concept_id => omop.visit_type_concept_id,
         provider_id => omop.provider_id,
         # domain specific columns

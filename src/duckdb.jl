@@ -69,3 +69,17 @@ if FunOMOP_SQL_dialect == :duckdb
     end
 end
 
+if FunOMOP_SQL_dialect == :duckdb
+    @funsql begin
+        datetime_from_date_ints(year, month, day) =
+        strptime(format(
+            "{:04d}-{:02d}-{:02d}",
+            $year, $month, $day,),
+            "%Y-%m-%d")
+    end
+end
+
+#TODO: implement this function
+@funsql begin
+    date_to_datetime(date) = $date
+end

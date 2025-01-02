@@ -12,10 +12,10 @@ visit_detail() = begin
         concept_id => omop.visit_detail_concept_id,
         datetime => coalesce(
             omop.visit_detail_start_datetime,
-            omop.visit_detail_start_date),
+            date_to_datetime(omop.visit_detail_start_date)),
         datetime_end => coalesce(
             omop.visit_detail_end_datetime,
-            omop.visit_detail_end_date),
+            date_to_datetime(omop.visit_detail_end_date)),
         type_concept_id => omop.visit_detail_type_concept_id,
         provider_id => omop.provider_id,
         visit_occurrence_id => omop.visit_occurrence_id,

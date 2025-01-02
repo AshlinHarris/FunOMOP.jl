@@ -12,10 +12,10 @@ device() = begin
         concept_id => omop.device_concept_id,
         datetime => coalesce(
             omop.device_exposure_start_datetime,
-            omop.device_exposure_start_date),
+            date_to_datetime(omop.device_exposure_start_date)),
         datetime_end => coalesce(
             omop.device_exposure_end_datetime,
-            omop.device_exposure_end_date),
+            date_to_datetime(omop.device_exposure_end_date)),
         type_concept_id => omop.device_type_concept_id,
         provider_id => omop.provider_id,
         visit_occurrence_id => omop.visit_occurrence_id,

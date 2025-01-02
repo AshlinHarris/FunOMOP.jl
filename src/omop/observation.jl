@@ -12,7 +12,7 @@ observation() = begin
         concept_id => omop.observation_concept_id,
         datetime => coalesce(
             omop.observation_datetime,
-            omop.observation_date),
+            date_to_datetime(omop.observation_date)),
         datetime_end => missing,
         type_concept_id => omop.observation_type_concept_id,
         provider_id => omop.provider_id,

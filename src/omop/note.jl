@@ -12,7 +12,7 @@ note() = begin
         concept_id => omop.note_class_concept_id,
         datetime => coalesce(
             omop.note_datetime,
-            omop.note_date),
+            date_to_datetime(omop.note_date)),
         datetime_end => missing,
         type_concept_id => omop.note_type_concept_id,
         provider_id => omop.provider_id,

@@ -14,17 +14,14 @@
             gender_concept_id => omop.gender_concept_id,
             birth_datetime => coalesce(
                 omop.birth_datetime,
-                strptime(format(
-                    "{:04d}-{:02d}-{:02d}",
+                datetime_from_date_ints(
                     omop.year_of_birth,
                     coalesce(omop.month_of_birth, 1),
                     coalesce(omop.day_of_birth, 1)),
-                    "%Y-%m-%d")
             ),
             death_datetime => coalesce(
                 omop.death.death_datetime,
-                #TODO: here and throughout, convert DATE to DATETIME?
-                omop.death.death_date,
+                date_to_datetime(omop.death.death_date),
             ),
             death_concept_id =>
             case(is_not_null(omop.death.person_id),
