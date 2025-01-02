@@ -77,6 +77,11 @@ if FunOMOP_SQL_dialect == :duckdb
             $year, $month, $day,),
             "%Y-%m-%d")
     end
+elseif FunOMOP_SQL_dialect == :spark
+    @funsql begin
+        datetime_from_date_ints(year, month, day) =
+            timestamp(make_date($year, $month, $day,))
+    end
 end
 
 #TODO: implement this function
