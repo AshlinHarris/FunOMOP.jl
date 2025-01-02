@@ -1,6 +1,10 @@
 module FunOMOP
 
-export get_test_db
+#TODO: automatically read this from the database or the FunSQL command?
+if !@isdefined(FunOMOP_SQL_dialect)
+    @warn("`FunOMOP_SQL_dialect` is not set. Options are :spark or :duckdb (default)")
+    global FunOMOP_SQL_dialect = :duckdb
+end
 
 export funsql_concept
 export funsql_care_site
@@ -13,7 +17,6 @@ export funsql_provider
 export funsql_specimen
 export funsql_visit
 export funsql_visit_detail
-
 
 using Artifacts
 using CSV
@@ -33,6 +36,44 @@ include("specimen.jl")
 include("visit.jl")
 include("visit_detail.jl")
 
+@warn(FunOMOP_SQL_dialect)
+@warn(FunOMOP_SQL_dialect == :duckdb)
+
+if FunOMOP_SQL_dialect == :duckdb
+
+    macro export_funsql_fun_or_agg(exs...)
+        block = Expr(:block)
+        for ex in exs
+            is_agg = false
+            if ex isa Union{Symbol, String}
+                def = name = ex
+            elseif FunSQL.@dissect(ex, Expr(:vect, def::Union{Symbol, String}))
+                is_agg = true
+                name = def
+            elseif FunSQL.@dissect(ex, Expr(:(=), def::Union{Symbol, String}, name::Union{Symbol, String}))
+            elseif FunSQL.@dissect(ex, Expr(:(=), Expr(:vect, def::Union{Symbol, String}), name::Union{Symbol, String}))
+                is_agg = true
+            else
+                error("invalid @export_funsql_fun_or_agg notation")
+            end
+            fun = is_agg ? FunSQL.AggClosure : FunSQL.FunClosure
+            name = QuoteNode(Symbol(name))
+            push!(block.args, Expr(:export, esc(Symbol("funsql_$def"))))
+            push!(block.args, :(const $(esc(Symbol("funsql_$def"))) = $fun($name)))
+        end
+        return block
+    end
+
+    # See https://spark.apache.org/docs/latest/api/sql/ and
+    # https://learn.microsoft.com/en-us/azure/databricks/sql/language-manual/sql-ref-functions-builtin-alpha
+
+end
+@export_funsql_fun_or_agg(
+    format,
+    strptime,
+)
+
+export get_test_db
 """
     get_test_db()
 Build a test database in memory and return the connection
@@ -68,38 +109,5 @@ function get_test_db()
     return updated_conn
 
 end
-
-using FunSQL: @dissect
-
-macro export_funsql_fun_or_agg(exs...)
-    block = Expr(:block)
-    for ex in exs
-        is_agg = false
-        if ex isa Union{Symbol, String}
-            def = name = ex
-        elseif @dissect(ex, Expr(:vect, def::Union{Symbol, String}))
-            is_agg = true
-            name = def
-        elseif @dissect(ex, Expr(:(=), def::Union{Symbol, String}, name::Union{Symbol, String}))
-        elseif @dissect(ex, Expr(:(=), Expr(:vect, def::Union{Symbol, String}), name::Union{Symbol, String}))
-            is_agg = true
-        else
-            error("invalid @export_funsql_fun_or_agg notation")
-        end
-        fun = is_agg ? FunSQL.AggClosure : FunSQL.FunClosure
-        name = QuoteNode(Symbol(name))
-        push!(block.args, Expr(:export, esc(Symbol("funsql_$def"))))
-        push!(block.args, :(const $(esc(Symbol("funsql_$def"))) = $fun($name)))
-    end
-    return block
-end
-
-# See https://spark.apache.org/docs/latest/api/sql/ and
-# https://learn.microsoft.com/en-us/azure/databricks/sql/language-manual/sql-ref-functions-builtin-alpha
-
-@export_funsql_fun_or_agg(
-    format,
-    strptime,
-)
 
 end # module FunOMOP

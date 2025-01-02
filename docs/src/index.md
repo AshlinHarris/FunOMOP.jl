@@ -15,6 +15,8 @@ DocTestSetup = quote
     using DuckDB
     using FunOMOP
     using FunSQL
+
+    global FunOMOP_SQL_dialect = :duckdb
     conn = get_test_db()
 end
 ```
