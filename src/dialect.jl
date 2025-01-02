@@ -1,3 +1,5 @@
+FunOMOP_SQL_dialect = get(ENV, "FunOMOP_SQL_dialect", :duckdb)
+
 #TODO: automatically read this from the database or the FunSQL command?
 if !@isdefined(FunOMOP_SQL_dialect)
     @warn("`FunOMOP_SQL_dialect` is not set. Options are :spark or :duckdb (default)")
