@@ -90,7 +90,7 @@ if FunOMOP_SQL_dialect == "duckdb"
 elseif FunOMOP_SQL_dialect == "spark"
 
     @export_funsql_fun_or_agg(
-        makedate,
+        make_date,
         timestamp,
     )
 
