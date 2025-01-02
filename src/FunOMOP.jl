@@ -18,6 +18,8 @@ using DataFrames
 using DuckDB
 using FunSQL
 
+include("dialect.jl")
+
 include("omop/concept.jl")
 include("omop/care_site.jl")
 include("omop/device.jl")
@@ -29,12 +31,5 @@ include("omop/provider.jl")
 include("omop/specimen.jl")
 include("omop/visit.jl")
 include("omop/visit_detail.jl")
-
-#TODO: automatically read this from the database or the FunSQL command?
-if !@isdefined(FunOMOP_SQL_dialect)
-    @warn("`FunOMOP_SQL_dialect` is not set. Options are :spark or :duckdb (default)")
-    global FunOMOP_SQL_dialect = :duckdb
-end
-include("duckdb.jl")
 
 end # module FunOMOP

@@ -1,3 +1,9 @@
+#TODO: automatically read this from the database or the FunSQL command?
+if !@isdefined(FunOMOP_SQL_dialect)
+    @warn("`FunOMOP_SQL_dialect` is not set. Options are :spark or :duckdb (default)")
+    global FunOMOP_SQL_dialect = :duckdb
+end
+
 macro export_funsql_fun_or_agg(exs...)
     block = Expr(:block)
     for ex in exs
