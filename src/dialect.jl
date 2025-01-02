@@ -89,6 +89,11 @@ if FunOMOP_SQL_dialect == "duckdb"
 
 elseif FunOMOP_SQL_dialect == "spark"
 
+    @export_funsql_fun_or_agg(
+        makedate,
+        timestamp,
+    )
+
     @funsql begin
         datetime_from_date_ints(year, month, day) =
             timestamp(make_date($year, $month, $day,))
