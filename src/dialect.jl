@@ -1,7 +1,7 @@
 #TODO: automatically read this from the database or the FunSQL command?
 if !@isdefined(FunOMOP_SQL_dialect)
     @warn("`FunOMOP_SQL_dialect` is not set. Options are :spark or :duckdb (default)")
-    global FunOMOP_SQL_dialect = :duckdb
+    const global FunOMOP_SQL_dialect = :duckdb
 end
 
 macro export_funsql_fun_or_agg(exs...)
@@ -27,6 +27,7 @@ macro export_funsql_fun_or_agg(exs...)
     return block
 end
 
+@warn(":FunOMOP_SQL_dialect", FunOMOP_SQL_dialect)
 if FunOMOP_SQL_dialect == :duckdb
 
     #TODO: why doesn't this work inside an if block?
@@ -73,9 +74,7 @@ if FunOMOP_SQL_dialect == :duckdb
         return updated_conn
 
     end
-end
 
-if FunOMOP_SQL_dialect == :duckdb
     @funsql begin
         datetime_from_date_ints(year, month, day) =
         strptime(format(
@@ -83,11 +82,14 @@ if FunOMOP_SQL_dialect == :duckdb
             $year, $month, $day,),
             "%Y-%m-%d")
     end
+
 elseif FunOMOP_SQL_dialect == :spark
+
     @funsql begin
         datetime_from_date_ints(year, month, day) =
             timestamp(make_date($year, $month, $day,))
     end
+
 end
 
 #TODO: implement this function
