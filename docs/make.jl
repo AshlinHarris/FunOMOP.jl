@@ -7,7 +7,7 @@ makedocs(
     modules = [FunOMOP],
     #doctest = :fix,
     #warnonly = true,
-    #checkdocs=:exports,
+    checkdocs=:exports,
 )
 
 # Documenter can also automatically deploy documentation to gh-pages.
