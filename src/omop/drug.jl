@@ -1,6 +1,8 @@
 @funsql begin
     """
         funsql_drug()
+
+        WRITE A DOCSTRING
     """
     drug() = begin
         from(drug_exposure)

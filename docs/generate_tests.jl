@@ -1,7 +1,7 @@
 using Documenter
 using FunOMOP
 
-@info("Generating index.md")
+@info("Generating index.md (this isn't a typical step for building documentation)")
 
 fh = open("src/index.md", "w")
 
@@ -39,9 +39,9 @@ Order   = [:function, :type]
 
 """)
 
-#TODO: get only the table names
+#TODO: automatically separate out DuckDB functions
 for function_name in string.(names(FunOMOP))
-    if startswith(function_name, "funsql_")
+    if startswith(function_name, "funsql_") && function_name ∉ ["funsql_format", "funsql_strptime"]
         stripped_name = replace(function_name, r"^funsql_"=>"")
 write(fh,"
 ```jldoctest
