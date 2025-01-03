@@ -6,6 +6,7 @@ export funsql_condition
 export funsql_device
 export funsql_drug
 export funsql_location
+export funsql_measurement
 export funsql_note
 export funsql_observation
 export funsql_person
@@ -28,6 +29,7 @@ include("omop/condition.jl")
 include("omop/device.jl")
 include("omop/drug.jl")
 include("omop/location.jl")
+include("omop/measurement.jl")
 include("omop/note.jl")
 include("omop/observation.jl")
 include("omop/person.jl")

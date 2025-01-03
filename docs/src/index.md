@@ -66,15 +66,12 @@ julia> DBInterface.execute(conn, @funsql(device().limit(1))) |> DataFrame
 
 ```jldoctest
 julia> DBInterface.execute(conn, @funsql(drug().limit(1))) |> DataFrame
-ERROR: UndefVarError: `funsql_timestamp` not defined in `FunOMOP`
-Suggestion: check for spelling errors or missing imports.
-Stacktrace:
- [1] funsql_drug
-   @ ~/Desktop/AshlinHarris/FunOMOP.jl/src/omop/drug.jl:9 [inlined]
- [2] funsql_drug()
-   @ FunOMOP ./none:0
- [3] top-level scope
-   @ none:1
+1×17 DataFrame
+ Row │ domain_id  occurrence_id  person_id  concept_id  datetime             d ⋯
+     │ String     Int64          Int64      Int64       DateTime             D ⋯
+─────┼──────────────────────────────────────────────────────────────────────────
+   1 │ Drug                   1          1    19073183  2014-04-22T00:00:00  2 ⋯
+                                                              12 columns omitted
 ```
 
 ```jldoctest
@@ -84,6 +81,16 @@ julia> DBInterface.execute(conn, @funsql(location().limit(1))) |> DataFrame
      │ Int64        String     String     String  String  String  String  Int6 ⋯
 ─────┴──────────────────────────────────────────────────────────────────────────
                                                                3 columns omitted
+```
+
+```jldoctest
+julia> DBInterface.execute(conn, @funsql(measurement().limit(1))) |> DataFrame
+1×15 DataFrame
+ Row │ domain_id    occurrence_id  person_id  concept_id  datetime             ⋯
+     │ String       Int64          Int64      Int64       DateTime             ⋯
+─────┼──────────────────────────────────────────────────────────────────────────
+   1 │ Measurement              1          1     3025315  2013-05-17T00:00:00  ⋯
+                                                              10 columns omitted
 ```
 
 ```jldoctest
