@@ -1,6 +1,8 @@
 @funsql begin
     """
         funsql_care_site()
+
+        WRITE A DOCSTRING
     """
     care_site() = begin
         from(care_site)

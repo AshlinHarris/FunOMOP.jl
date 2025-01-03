@@ -1,6 +1,8 @@
 @funsql begin
     """
         funsql_procedure()
+
+        WRITE A DOCSTRING
     """
     procedure() = begin
         from(procedure_occurrence)

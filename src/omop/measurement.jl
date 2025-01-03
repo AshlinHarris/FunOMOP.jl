@@ -1,6 +1,8 @@
 @funsql begin
     """
         funsql_measurement()
+
+        WRITE A DOCSTRING
     """
     measurement() = begin
         from(measurement)

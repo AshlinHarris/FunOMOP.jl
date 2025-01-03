@@ -1,6 +1,8 @@
 @funsql begin
     """
         funsql_provider()
+
+        WRITE A DOCSTRING
     """
     provider() = begin
         from(provider)

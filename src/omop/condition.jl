@@ -1,6 +1,8 @@
 @funsql begin
     """
         funsql_condition()
+
+        WRITE A DOCSTRING
     """
     condition() = begin
         from(condition_occurrence)

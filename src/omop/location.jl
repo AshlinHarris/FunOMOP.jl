@@ -1,6 +1,8 @@
 @funsql begin
     """
         funsql_location()
+
+        WRITE A DOCSTRING
     """
     location() = begin
         from(location)

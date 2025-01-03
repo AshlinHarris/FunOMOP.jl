@@ -1,6 +1,8 @@
 @funsql begin
     """
         funsql_person()
+
+        WRITE A DOCSTRING
     """
     person() = begin
         from(person)

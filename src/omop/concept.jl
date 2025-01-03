@@ -1,6 +1,8 @@
 @funsql begin
     """
         funsql_concept()
+
+        WRITE A DOCSTRING
     """
     concept() = begin
         from(concept)
