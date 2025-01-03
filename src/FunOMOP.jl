@@ -10,6 +10,7 @@ export funsql_measurement
 export funsql_note
 export funsql_observation
 export funsql_person
+export funsql_procedure
 export funsql_provider
 export funsql_specimen
 export funsql_visit
@@ -33,6 +34,7 @@ include("omop/measurement.jl")
 include("omop/note.jl")
 include("omop/observation.jl")
 include("omop/person.jl")
+include("omop/procedure.jl")
 include("omop/provider.jl")
 include("omop/specimen.jl")
 include("omop/visit.jl")

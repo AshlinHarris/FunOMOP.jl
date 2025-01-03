@@ -123,6 +123,16 @@ julia> DBInterface.execute(conn, @funsql(person().limit(1))) |> DataFrame
 ```
 
 ```jldoctest
+julia> DBInterface.execute(conn, @funsql(procedure().limit(1))) |> DataFrame
+1×11 DataFrame
+ Row │ domain_id  occurrence_id  person_id  concept_id  datetime             d ⋯
+     │ String     Int64          Int64      Int64       DateTime             I ⋯
+─────┼──────────────────────────────────────────────────────────────────────────
+   1 │ Procedure              1          1     4298386  2010-04-30T00:00:00    ⋯
+                                                               6 columns omitted
+```
+
+```jldoctest
 julia> DBInterface.execute(conn, @funsql(provider().limit(1))) |> DataFrame
 1×8 DataFrame
  Row │ provider_id  provider_name              npi      dea      concept_id  c ⋯
