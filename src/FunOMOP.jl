@@ -4,6 +4,7 @@ export funsql_concept
 export funsql_care_site
 export funsql_condition
 export funsql_device
+export funsql_drug
 export funsql_location
 export funsql_note
 export funsql_observation
@@ -25,6 +26,7 @@ include("omop/concept.jl")
 include("omop/care_site.jl")
 include("omop/condition.jl")
 include("omop/device.jl")
+include("omop/drug.jl")
 include("omop/location.jl")
 include("omop/note.jl")
 include("omop/observation.jl")
