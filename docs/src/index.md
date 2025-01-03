@@ -45,6 +45,16 @@ julia> DBInterface.execute(conn, @funsql(concept().limit(1))) |> DataFrame
 ```
 
 ```jldoctest
+julia> DBInterface.execute(conn, @funsql(condition().limit(1))) |> DataFrame
+1×11 DataFrame
+ Row │ domain_id  occurrence_id  person_id  concept_id  datetime             d ⋯
+     │ String     Int64          Int64      Int64       DateTime             D ⋯
+─────┼──────────────────────────────────────────────────────────────────────────
+   1 │ Condition              1          1      372328  2002-10-15T00:00:00  2 ⋯
+                                                               6 columns omitted
+```
+
+```jldoctest
 julia> DBInterface.execute(conn, @funsql(location().limit(1))) |> DataFrame
 0×10 DataFrame
  Row │ location_id  address_1  address_2  city    state   zip     county  coun ⋯

@@ -2,6 +2,7 @@ module FunOMOP
 
 export funsql_concept
 export funsql_care_site
+export funsql_condition
 export funsql_device
 export funsql_location
 export funsql_note
@@ -22,6 +23,7 @@ include("dialect.jl")
 
 include("omop/concept.jl")
 include("omop/care_site.jl")
+include("omop/condition.jl")
 include("omop/device.jl")
 include("omop/location.jl")
 include("omop/note.jl")
